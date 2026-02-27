@@ -32,9 +32,9 @@
             display: flex;         
             flex-direction: column; 
             box-sizing: border-box;
-            height: 13.2in;        
-            max-height: 13.2in;
-            overflow: hidden;
+            min-height: 12.5in;
+            height: auto;
+            overflow: visible;
         }
 
         table {
@@ -88,7 +88,7 @@
     border: none;
     outline: none;
     resize: none;
-    overflow-y: auto; /* Scroll on screen */
+    overflow-y: auto; 
 }
         
         .amount-due-row td {
@@ -213,11 +213,14 @@
 
     .voucher-container {
         position: relative;
-        width: 100%;
+        width: 100% !important;
         max-width: 100%;
         margin: 0 auto;
         page-break-inside: avoid;
         break-inside: avoid;
+        height: auto !important;
+        max-height: none !important;
+
     }
 
     table {
@@ -354,7 +357,7 @@ input[type="checkbox"]:checked::after {
                     <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
                     <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
                     <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
-                    <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-amount amount-input" style="text-align: right;" placeholder=""></textarea></td>
+                    <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-amount amount-input" style="text-align: right; font-weight: bold;" placeholder=""></textarea></td>
                 </tr>
                 <tr class="amount-due-row">
                     <td colspan="3" class="bold" style="text-align: right; padding-right: 20px; font-size: 11px;">Amount Due</td>
@@ -563,4 +566,3 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </body>
 </html>
-
