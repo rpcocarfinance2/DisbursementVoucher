@@ -48,7 +48,7 @@
             border: 1px solid black;
             padding: 2px 5px;
             vertical-align: top;
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .header-title {
@@ -84,8 +84,9 @@
             font-size: 16px !important; 
             font-family: "Times New Roman", Times, serif !important;
             font-weight: 400;
-            height: 320px; 
-            max-height: 320px;
+            width: 100%;
+            height: 100%; 
+            max-height: 100%;
             overflow: hidden;
             resize: none;
             border: none;
@@ -236,6 +237,8 @@
     .floating-buttons {
         display: none;
     }
+    
+
 }
 
 .floating-buttons {
@@ -355,10 +358,10 @@ input[type="checkbox"]:checked::after {
             </thead>
             <tbody>
                 <tr>
-                    <td style="height: 400px;"><textarea class="particulars-input validate-text"></textarea></td>
-                    <td><textarea class="particulars-input validate-text"></textarea></td>
-                    <td><textarea class="particulars-input validate-text"></textarea></td>
-                    <td><textarea class="particulars-input validate-amount amount-input" style="text-align: right;" placeholder=""></textarea></td>
+                    <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
+                    <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
+                    <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
+                    <td style="height: 400px; padding: 0;"><textarea class="particulars-input validate-amount amount-input" style="text-align: right;" placeholder=""></textarea></td>
                 </tr>
                 <tr class="amount-due-row">
                     <td colspan="3" class="bold" style="text-align: right; padding-right: 20px; font-size: 11px;">Amount Due</td>
@@ -493,7 +496,8 @@ input[type="checkbox"]:checked::after {
             </tr>
         </table>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
