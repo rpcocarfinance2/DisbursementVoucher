@@ -1,421 +1,498 @@
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Disbursement Voucher</title>
-            <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disbursement Voucher</title>
+    <style>
 
-                
-                @page {
-                    size: portrait;
-                }
+        
+        @page {
+            size: portrait;
+        }
 
-                * {
-                    box-sizing: border-box;
-                    font-family: Arial, Helvetica, sans-serif !important;
-                }
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif !important;
+        }
 
-                body {
-                    background-color: #f0f2f0;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 12px 8px;
-                    min-height: 100vh;
-                    background-color: #acffba;
-                }
+        body {
+            background-color: #f0f2f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 8px;
+            min-height: 100vh;
+            background-color: #acffba;
+        }
 
-                .voucher-container {
-                    width: 100%;
-                    max-width: 8.5in;
-                    background: white;
-                    padding: 0.15in;
-                    display: flex;         
-                    flex-direction: column; 
-                    box-sizing: border-box;
-                    min-height: 12.5in;
-                    height: auto;
-                    overflow: visible;
-                }
+        .voucher-container {
+            width: 100%;
+            max-width: 8.5in;
+            background: white;
+            padding: 0.15in;
+            display: flex;         
+            flex-direction: column; 
+            box-sizing: border-box;
+            min-height: 12.5in;
+            height: auto;
+            overflow: visible;
+        }
 
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    table-layout: fixed;
-                }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
 
-                td, th {
-                    border: 1px solid black;
-                    padding: 2px 5px;
-                    vertical-align: top;
-                    font-size: 12px;
-                }
+        td, th {
+            border: 1px solid black;
+            padding: 2px 5px;
+            vertical-align: top;
+            font-size: 12px;
+        }
 
-                .header-title {
-                    text-align: center;
-                    font-size: 18px;
-                    font-weight: bold;
-                    padding: 5px;
-                }
+        .header-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 5px;
+        }
 
-                .entity-name {
-                    text-align: center;
-                    font-size: 14px;
-                    font-weight: bold;
-                    border-bottom: 1px solid black;
-                    padding-bottom: 2px;
-                    margin-bottom: 2px;
-                }
-                            
-                .bold { font-weight: bold; }
-                .center { text-align: center; }
-                
-                input[type="text"], textarea, .rich-text-area {
-                    width: 100%;
-                    border: none;
-                    outline: none;
-                    background: transparent;
-                    padding: 2px;
-                    font-size: 12px;
-                    font-family: Arial, Helvetica, sans-serif !important;
-                }
-
-                .particulars-input {
-                    font-size: 15px !important;
-                    width: 100%;
-                    height: 100%;
-                    min-height: 400px;
-                    border: none;
-                    outline: none;
-                    resize: none;
-                    overflow-y: auto; 
-                }
-                
-                .amount-due-row td {
-                    height: 25px; 
-                    vertical-align: middle;
-                    padding: 2px 5px;
-                }
-
-                .mode-of-payment {
-                    display: flex;
-                    gap: 12px;
-                    padding: 3px;
-                    align-items: center;
-                    font-size: 10px;
-                }
-
-                .section-label {
-                    width: 25px;
-                    font-weight: bold;
-                    border-right: 1px solid black;
-                    text-align: center;
-                    background: #f7f7f7;
-                    vertical-align: middle;
-                }
-
-                .signature-block { text-align: center; }
-
-                .signature-line {
-                    border-bottom: 1px solid black;
-                    width: 70%;
-                    margin: 0 auto 2px;
-                }
-
-                .small-text { font-size: 8.5px; }
-
-                .row { display: flex; width: 100%; border-bottom: 1px solid black; }
-                .col { display: flex; flex-direction: column; border-right: 1px solid black; padding: 2px 5px; }
-                .col:last-child { border-right: none; }
-                .font-small { font-size: 10px; }
-                .font-medium { font-size: 12px; }
-                
-                .mop-row { align-items: center; padding: 3px; font-size: 11px; }
-                .checkbox-group { display: flex; gap: 15px; margin-left: 20px; }
-
-                /* DEFAULT SCREEN STYLE */
-input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid black;
-    background-color: white;
-    cursor: pointer;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    margin-right: 5px;
-}
-
-/* Checked style */
-input[type="checkbox"]:checked {
-    background-color: black;
-}
-
-/* White checkmark */
-input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    left: 3px;
-    top: 0px;
-    width: 4px;
-    height: 8px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-                @media print {
-                    @page { size: legal portrait; margin: 0.3in; }
-                    html, body { margin: 0; padding: 0; background: white; }
-                    body { display: block; }
-                    body * { visibility: hidden; }
-                    .voucher-container, .voucher-container * { visibility: visible; }
-                    .voucher-container {
-                        position: relative;
-                        width: 100% !important;
-                        margin: 0 auto;
-                        page-break-inside: avoid;
-                    }
-                    .floating-buttons { display: none; }
-   .row {
-        display: flex !important;
-        flex-direction: row !important;
-        width: 100% !important;
-    }
-    }
+        .entity-name {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 1px solid black;
+            padding-bottom: 2px;
+            margin-bottom: 2px;
+        }
                     
-            
+        .bold { font-weight: bold; }
+        .center { text-align: center; }
+        
+        input[type="text"], textarea, .rich-text-area {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 2px;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif !important;
+        }
 
-                .floating-buttons {
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    z-index: 9999;
-                }
+        .particulars-input {
+            font-size: 15px !important;
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            border: none;
+            outline: none;
+            resize: none;
+            overflow-y: auto; 
+        }
+        
+        .amount-due-row td {
+            height: 25px; 
+            vertical-align: middle;
+            padding: 2px 5px;
+        }
 
-                .floating-buttons button {
-                    padding: 10px 20px;
-                    font-weight: bold;
-                    border: none;
-                    border-radius: 4px;
-                    cursor: pointer;
-                }
+        .mode-of-payment {
+            display: flex;
+            gap: 12px;
+            padding: 3px;
+            align-items: center;
+            font-size: 10px;
+        }
 
-                .print-btn { background: #2e7d32; color: white; }
+        .section-label {
+            width: 25px;
+            font-weight: bold;
+            border-right: 1px solid black;
+            text-align: center;
+            background: #f7f7f7;
+            vertical-align: middle;
+        }
 
-/* FORCE CHECKBOX TO PRINT */
-input[type="checkbox"] {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    appearance: none;
-    -webkit-appearance: none;
-    border: 1.5px solid black !important;
-    background: white !important;
-}
+        .signature-block { text-align: center; }
 
-/* Make checked box solid black in print */
-input[type="checkbox"]:checked {
-    background: black !important;
-}
-            </style>
-        </head>
-        <body>
-        <div class="floating-buttons">
-            <button class="print-btn" onclick="window.print()">Print Voucher</button>
-        </div>
-        <div class="voucher-container">
-        <table>
-            <tr>
-                <td colspan="3" style="border-bottom: 1px solid black; vertical-align: middle;">
-                    <div class="entity-name" style="vertical-align: middle; text-align: center; font-size: 20px; font-weight: bold;">Department of Agriculture Regional Field Office <br> Cordillera Administrative Region</div>
-                    <div class="header-title" style="display:flex; align-items:center; justify-content: center; font-size: 19px;  font-weight: bold; height: 50px;">DISBURSEMENT VOUCHER</div>
-                </td>
-                <td style="width: 25%; padding: 0;">
-                    <table style="border: none;">
-                        <tr><td style="border: none; border-bottom: 1px solid black;"><b>Fund Cluster:</b> <input type="text" class="validate-text"></td></tr> 
-                        <tr><td style="border: none; border-bottom: 1px solid black;"><b>Date:</b> <input type="text" class="validate-date" placeholder=""></td></tr>
-                        <tr><td style="border: none;"><b>DV No.:</b> <input type="text" class="validate-text"></td></tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+        .signature-line {
+            border-bottom: 1px solid black;
+            width: 70%;
+            margin: 0 auto 2px;
+        }
 
-        <div class="row mop-row" style="border-left: 1px solid black; border-right: 1px solid black;" >
-                    <span class="bold">Mode of Payment</span>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox"> MDS Check</label>
-                        <label><input type="checkbox"> Commercial Check</label>
-                        <label><input type="checkbox"> ADA</label>
-                        <label><input type="checkbox"> Others (Please specify) <input type="text" style="width:auto; border-bottom: 1px solid black;" class="validate-text"></label>
-                    </div>
-                </div>
+        .small-text { font-size: 8.5px; }
 
-                <div class="row">
-                    <div class="col" style="width: 55%; border-left: 1px solid black; border-right: 1px solid black;">
-                        <div class="bold font-medium">Payee</div>
-                        <input type="text" class="validate-text">
-                    </div>
-                    <div class="col" style="width: 22%; ">
-                        <div class="bold font-medium">TIN/Employee No.:</div>
-                        <input type="text" class="validate-text">
-                    </div>
-                    <div class="col" style="width: 23%; border-right: 1px solid black;">
-                        <div class="bold font-medium">ORS/BURS No.:</div>
-                        <input type="text" class="validate-text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col" style="width: 100%; border-left: 1px solid black; border-right: 1px solid black;">
-                        <div class="bold font-medium">Address</div>
-                        <input type="text" class="validate-text">
-                    </div>
-                </div>
+        .row { display: flex; width: 100%; border-bottom: 1px solid black; }
+        .col { display: flex; flex-direction: column; border-right: 1px solid black; padding: 2px 5px; }
+        .col:last-child { border-right: none; }
+        .font-small { font-size: 10px; }
+        .font-medium { font-size: 12px; }
+        
+        .mop-row { align-items: center; padding: 3px; font-size: 11px; }
+        .checkbox-group { display: flex; gap: 15px; margin-left: 20px; }
 
-                <table style="border-top: none; flex-grow: 1;">
-                    <thead>
-                        <tr class="center">
-                            <th style="width: 45%;">Particulars</th>
-                            <th style="width: 20%;">Responsibility Center</th>
-                            <th style="width: 20%;">MFO/PAP</th>
-                            <th style="width: 15%;">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="height: 320px; padding: 5px;">
-                                <div contenteditable="true" class="particulars-input rich-text-area"></div>
-                            </td>
-                            <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
-                            <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
-                            <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-amount amount-input" style="text-align: right; font-weight: bold;" placeholder=""></textarea></td>
-                        </tr>
-                        <tr class="amount-due-row">
-                            <td colspan="3" class="bold" style="text-align: right; padding-right: 20px; font-size: 11px;">Amount Due</td>
-                            <td><input type="text" class="validate-amount" style="text-align: right; font-weight: bold; font-size: 14px;" placeholder=""></td>
-                        </tr>
-                    </tbody>
-                </table>
+        /* DEFAULT SCREEN STYLE */
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid black;
+            background-color: white;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            margin-right: 5px;
+        }
 
-        <table>
-            <tr>
-                <td class="section-label">A.</td>
-                <td style="padding: 10px;">
-                    <div class="bold" style="font-size: 10px;">Certified: Expenses/Cash Advance necessary, lawful and incurred under my direct supervision.</div>
-                    <div style="margin-top: 50px; text-align: center;">
-                        <div style="width: 70%; border-bottom: 1px solid black; margin: 0 auto;"><input type="text" style="text-align: center; font-weight: bold;"></div>
-                        <div class="bold" style="font-size: 10px; margin-top: 4px;">Printed Name, Designation and Signature of Supervisor</div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        /* Checked style */
+        input[type="checkbox"]:checked {
+            background-color: black;
+        }
 
+        /* White checkmark */
+        input[type="checkbox"]:checked::after {
+            content: "";
+            position: absolute;
+            left: 3px;
+            top: 0px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
 
-                <table style="border-top: none;">
-                    <tr>
-                        <td class="section-label" style="width: 25px;">C.</td>
-                        <td style="width: 48%; padding: 5px;">
-                            <div class="bold" style="font-size: 11px; margin-bottom: 5px;">Certified:</div>
-                            <div style="margin-left: 5px; font-size: 10px; line-height: 1.4;">
-                                <div style="display: flex; align-items: flex-start; margin-bottom: 3px;">
-                                    <input type="checkbox" style="margin-right: 8px;"> <span>Cash available</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; margin-bottom: 3px;">
-                                    <input type="checkbox" style="margin-right: 8px;"> <span>Subject to Authority to Debit Account (when applicable)</span>
-                                </div>
-                                <div style="display: flex; align-items: flex-start; margin-bottom: 3px;">
-                                    <input type="checkbox" style="margin-right: 8px;"> <span>Supporting documents complete and amount claimed proper</span>
-                                </div>
-                            </div>
-                            
-                            <table style="margin-top: 10px; border-collapse: collapse; width: 100%;">
-                                <tr>
-                                    <td style="border: 1px solid black; width: 25%; font-size: 10px;">Signature</td>
-                                    <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 10px; vertical-align: middle;">Printed Name</td>
-                                    <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 10px;" rowspan="2">Position</td>
-                                    <td style="border: 1px solid black; vertical-align: middle; text-align: center;">
-                                    <input type="text" class="validate-text" style="text-align: center;"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9; text-align: center; vertical-align: middle;">Head, Accounting Unit/Authorized Representative</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 10px;">Date</td>
-                                    <td style="border: 1px solid black;"><input type="text" class="validate-date" placeholder=""></td>
-                                </tr>
-                            </table>
-                        </td>
+        @media print {
+            @page { size: legal portrait; margin: 0.3in; }
+            html, body { margin: 0; padding: 0; background: white; }
+            body { display: block; }
+            body * { visibility: hidden; }
+            .voucher-container, .voucher-container * { visibility: visible; }
+            .voucher-container {
+                position: relative;
+                width: 100% !important;
+                margin: 0 auto;
+                page-break-inside: avoid;
+            }
+            .floating-buttons { display: none; }
+            .row {
+                display: flex !important;
+                flex-direction: row !important;
+                width: 100% !important;
+            }
+        }
+                
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+        }
 
-                        <td class="section-label" style="width: 25px;">D.</td>
-                        <td style="width: 48%; padding: 5px;">
-                            <div class="bold" style="font-size: 11px; margin-bottom: 5px;">Approved for Payment</div>
-                            <div style="height: 55px; ">
-        <textarea type="text" 
-            style="font-family: Arial, sans-serif !important; font-size: 12px; height: 100%;" 
-            class="validate-text"></textarea>
-    </div>
-                            <table style="margin-top: 10px; border-collapse: collapse; width: 100%;">
-                                <tr>
-                                    <td style="border: 1px solid black; width: 25%; font-size: 10px;">Signature</td>
-                                    <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 10px; vertical-align: middle;">Printed Name</td>
-                                    <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 10px;" rowspan="2">Position</td>
-                                    <td style="border: 1px solid black; vertical-align: middle; text-align: center;">
-                                        <input type="text" class="validate-text" style="text-align: center;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9; text-align: center; vertical-align: middle;">
-            Agency Head/Authorized Representative
+        .floating-buttons button {
+            padding: 10px 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .print-btn { background: #2e7d32; color: white; }
+
+        /* FORCE CHECKBOX TO PRINT */
+        input[type="checkbox"] {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            appearance: none;
+            -webkit-appearance: none;
+            border: 1.5px solid black !important;
+            background: white !important;
+        }
+
+        /* Make checked box solid black in print */
+        input[type="checkbox"]:checked {
+            background: black !important;
+        }
+        
+        /* Accounting entry table styles */
+        .accounting-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .accounting-table td, 
+        .accounting-table th {
+            border: 0.5px solid black;
+            padding: 4px;
+            border-bottom: none;
+            border-left: none;
+        }
+        
+        
+        .accounting-table input[type="text"] {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 2px;
+        }
+        
+        /* Remove double borders in the nested tables */
+        table table {
+            border: none;
+        }
+        
+        table table td, 
+        table table tr {
+            border: none;
+        }
+        
+        .full-input {
+            flex: 1;
+            border: none;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="floating-buttons">
+    <button class="print-btn" onclick="window.print()">Print Voucher</button>
+</div>
+<div class="voucher-container">
+<table>
+    <tr>
+        <td colspan="3" style="border-bottom: 1px solid black; vertical-align: middle;">
+            <div class="entity-name" style="vertical-align: middle; text-align: center; font-size: 20px; font-weight: bold;">Department of Agriculture Regional Field Office <br> Cordillera Administrative Region</div>
+            <div class="header-title" style="display:flex; align-items:center; justify-content: center; font-size: 19px;  font-weight: bolder; height: 50px;">DISBURSEMENT VOUCHER</div>
         </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; font-size: 10px;">Date</td>
-                                    <td style="border: 1px solid black;"><input type="text" class="validate-date" placeholder=""></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+        <td style="width: 25%; padding: 0;">
+            <table style="border: none; width: 100%;">
+                <tr><td style="border: none; border-bottom: 1px solid black;"><b>Fund Cluster:</b> <input type="text" class="validate-text"></td></tr> 
+                <tr><td style="border: none; border-bottom: 1px solid black;"><b>Date:</b> <input type="text" class="validate-date" placeholder=""></td></tr>
+                <tr><td style="border: none;"><b>DV No.:</b> <input type="text" class="validate-text"></td></tr>
+            </table>
+        </td>
+    </tr>
+</table>
 
-                <table style="border-top: none;">
-                    <tr>
-                        <td class="section-label">E.</td>
-                        <td>
-                            <div class="bold">Receipt of Payment</div>
-                            <table style="border: none; margin-top: 2px;">
-                                <tr style="border: none;">
-                                    <td style="border: none; width: 33%;">Check No.: <input type="text" style="border-bottom: 1px solid #ccc; width: 100%;" class="validate-text"></td>
-                                    <td style="border: none; width: 33%;">Date: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-date" placeholder=""></td>
-                                    <td style="border: none; width: 33%;">Bank/Acc. No: <input type="text" style="border-bottom: 1px solid #ccc; width: 90%;" class="validate-text"></td>
-                                </tr>
-                                <tr style="border: none;">
-                                    <td style="border: none;">Signature: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-text"></td>
-                                    <td style="border: none;">Date: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-date" placeholder=""></td>
-                                    <td style="border: none;">Name: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-text"></td>
-                                </tr>
-                            </table>
-                            <div style="margin-top: 2px; font-size: 9px;">
-                                OR No. & Date: <input type="text" style="width: 70%; border-bottom: 1px solid black;" class="validate-date-range" placeholder="">
-                            </div>
-                        </td>
-                            <td style="width: 23%; vertical-align: middle;">
+<div class="row mop-row" style="border-left: 1px solid black; border-right: 1px solid black;" >
+            <span class="bold">Mode of Payment</span>
+            <div class="checkbox-group">
+                <label><input type="checkbox"> MDS Check</label>
+                <label><input type="checkbox"> Commercial Check</label>
+                <label><input type="checkbox"> ADA</label>
+                <label><input type="checkbox"> Others (Please specify) <input type="text" style="width:auto; border-bottom: 1px solid black;" class="validate-text"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col" style="width: 55%; border-left: 1px solid black; border-right: 1px solid black;">
+                <div class="bold font-medium">Payee</div>
+                <input type="text" class="validate-text">
+            </div>
+            <div class="col" style="width: 22%; ">
+                <div class="bold font-medium">TIN/Employee No.:</div>
+                <input type="text" class="validate-text">
+            </div>
+            <div class="col" style="width: 23%; border-right: 1px solid black;">
+                <div class="bold font-medium">ORS/BURS No.:</div>
+                <input type="text" class="validate-text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="width: 100%; border-left: 1px solid black; border-right: 1px solid black;">
+                <div class="bold font-medium">Address</div>
+                <input type="text" class="validate-text">
+            </div>
+        </div>
+
+        <table style="border-top: none; flex-grow: 1;">
+            <thead>
+                <tr class="center">
+                    <th style="width: 45%;">Particulars</th>
+                    <th style="width: 20%;">Responsibility Center</th>
+                    <th style="width: 20%;">MFO/PAP</th>
+                    <th style="width: 15%;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="height: 320px; padding: 5px;">
+                        <div contenteditable="true" class="particulars-input rich-text-area"></div>
+                    </td>
+                    <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
+                    <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-text"></textarea></td>
+                    <td style="height: 320px; padding: 0;"><textarea class="particulars-input validate-amount amount-input" style="text-align: right; font-weight: bold;" placeholder=""></textarea></td>
+                </tr>
+                <tr class="amount-due-row">
+                    <td colspan="3" class="bold" style="text-align: right; padding-right: 20px; font-size: 11px;">Amount Due</td>
+                    <td><input type="text" class="validate-amount" style="text-align: right; font-weight: bold; font-size: 14px;" placeholder=""></td>
+                </tr>
+            </tbody>
+        </table>
+
+<table>
+    <tr>
+        <td class="section-label">A.</td>
+        <td style="padding: 10px;">
+            <div class="bold" style="font-size: 10px;">Certified: Expenses/Cash Advance necessary, lawful and incurred under my direct supervision.</div>
+            <div style="margin-top: 50px; text-align: center;">
+                <div style="width: 70%; border-bottom: 1px solid black; margin: 0 auto;"><input type="text" style="text-align: center; font-weight: bold;"></div>
+                <div class="bold" style="font-size: 10px; margin-top: 4px;">Printed Name, Designation and Signature of Supervisor</div>
+            </div>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td class="section-label">B</td>
+        <td style="padding: 0;">
+            <div class="bold" style="padding: 2px 5px; font-size: 10px;">Accounting Entry:</div>
+            <table class="accounting-table">
+                <tr>
+                    <th style="width: 45%;">Account Title</th>
+                    <th style="width: 20%;">UACS Code</th>
+                    <th style="width: 17.5%;">Debit</th>
+                    <th style="width: 17.5%;">Credit</th>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table style="border-top: none;">
+    <tr>
+        <td class="section-label" style="width: 25px;">C.</td>
+        <td style="width: 48%; padding: 5px;">
+            <div class="bold" style="font-size: 11px; margin-bottom: 5px;">Certified:</div>
+            <div style="margin-left: 5px; font-size: 10px; line-height: 1.4;">
+                <div style="display: flex; align-items: flex-start; margin-bottom: 3px;">
+                    <input type="checkbox" style="margin-right: 8px;"> <span>Cash available</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; margin-bottom: 3px;">
+                    <input type="checkbox" style="margin-right: 8px;"> <span>Subject to Authority to Debit Account (when applicable)</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; margin-bottom: 3px;">
+                    <input type="checkbox" style="margin-right: 8px;"> <span>Supporting documents complete and amount claimed proper</span>
+                </div>
+            </div>
+            
+            <table style="margin-top: 10px; border-collapse: collapse; width: 100%;">
+                <tr>
+                    <td style="border: 1px solid black; width: 25%; font-size: 10px;">Signature</td>
+                    <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 10px; vertical-align: middle;">Printed Name</td>
+                    <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 10px;" rowspan="2">Position</td>
+                    <td style="border: 1px solid black; vertical-align: middle; text-align: center;">
+                    <input type="text" class="validate-text" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9; text-align: center; vertical-align: middle;">Head, Accounting Unit/Authorized Representative</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 10px;">Date</td>
+                    <td style="border: 1px solid black;"><input type="text" class="validate-date" placeholder=""></td>
+                </tr>
+            </table>
+        </td>
+
+        <td class="section-label" style="width: 25px;">D.</td>
+        <td style="width: 48%; padding: 5px;">
+            <div class="bold" style="font-size: 11px; margin-bottom: 5px;">Approved for Payment</div>
+            <div style="height: 55px; ">
+<textarea type="text" 
+    style="font-family: Arial, sans-serif !important; font-size: 12px; height: 100%;" 
+    class="validate-text"></textarea>
+</div>
+            <table style="margin-top: 10px; border-collapse: collapse; width: 100%;">
+                <tr>
+                    <td style="border: 1px solid black; width: 25%; font-size: 10px;">Signature</td>
+                    <td style="border: 1px solid black;"><input type="text" class="validate-text"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 10px; vertical-align: middle;">Printed Name</td>
+                    <td style="border: 1px solid black; vertical-align: middle;"><input type="text" class="validate-text"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 10px;" rowspan="2">Position</td>
+                    <td style="border: 1px solid black; vertical-align: middle; text-align: center;">
+                        <input type="text" class="validate-text" style="text-align: center;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 9px; background-color: #f9f9f9; text-align: center; vertical-align: middle;">
+    Agency Head/Authorized Representative
+</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-size: 10px;">Date</td>
+                    <td style="border: 1px solid black;"><input type="text" class="validate-date" placeholder=""></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table style="border-top: none;">
+    <tr>
+        <td class="section-label">E.</td>
+        <td>
+            <div class="bold">Receipt of Payment</div>
+            <table style="border: none; margin-top: 2px; width: 100%;">
+                <tr style="border: none;">
+                    <td style="border: none; width: 33%;">Check No.: <input type="text" style="border-bottom: 1px solid #ccc; width: 100%;" class="validate-text"></td>
+                    <td style="border: none; width: 33%;">Date: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-date" placeholder=""></td>
+                    <td style="border: none; width: 33%;">Bank/Acc. No: <input type="text" style="border-bottom: 1px solid #ccc; width: 90%;" class="validate-text"></td>
+                </tr>
+                <tr style="border: none;">
+                    <td style="border: none;">Signature: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-text"></td>
+                    <td style="border: none;">Date: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-date" placeholder=""></td>
+                    <td style="border: none;">Name: <input type="text" style="border-bottom: 1px solid #ccc; width: 60%;" class="validate-text"></td>
+                </tr>
+            </table>
+            <div style="margin-top: 2px; font-size: 9px;">
+                OR No. & Date: <input type="text" style="width: 70%; border-bottom: 1px solid black;" class="validate-date-range" placeholder="">
+            </div>
+        </td>
+          <td style="width: 23%; vertical-align: middle;">
                                 <div class="je-container">
                                     
                                     <div class="row" style="border-bottom: 1px solid black;">
@@ -432,61 +509,61 @@ input[type="checkbox"]:checked {
 
                                 </div>
                             </td>
-                    </tr>
-                </table>
-            </div>
+    </tr>
+</table>
+</div>
 
-        <script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const amountTextarea = document.querySelector("tbody tr:first-child .validate-amount");
+    const totalField = document.querySelector(".amount-due-row .validate-amount");
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const amountTextarea = document.querySelector("tbody tr:first-child .validate-amount");
-            const totalField = document.querySelector(".amount-due-row .validate-amount");
-
-            function formatNumber(value) {
-                return Number(value).toLocaleString('en-PH', {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                });
-            }
-
-            function evaluateExpression(expr) {
-                expr = expr.replace(/,/g, "");
-                if (!/^[0-9+\-*/().\s]+$/.test(expr)) return NaN;
-                try {
-                    return Function('"use strict"; return (' + expr + ')')();
-                } catch {
-                    return NaN;
-                }
-            }
-
-            function calculateTotal() {
-                let total = 0;
-                const lines = amountTextarea.value.split("\n");
-                lines.forEach(line => {
-                    const trimmed = line.trim();
-                    if (trimmed !== "") {
-                        const result = evaluateExpression(trimmed);
-                        if (!isNaN(result)) total += result;
-                    }
-                });
-                totalField.value = formatNumber(total);
-            }
-
-            amountTextarea.addEventListener("blur", function () {
-                const lines = this.value.split("\n");
-                for (let i = 0; i < lines.length; i++) {
-                    const trimmed = lines[i].trim();
-                    if (trimmed !== "") {
-                        const result = evaluateExpression(trimmed);
-                        if (!isNaN(result)) lines[i] = formatNumber(result);
-                        else lines[i] = "";
-                    }
-                }
-                this.value = lines.join("\n");
-                calculateTotal();
-            });
+    function formatNumber(value) {
+        return Number(value).toLocaleString('en-PH', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         });
-        </script>
-        </body>
-        </html>
+    }
 
+    function evaluateExpression(expr) {
+        expr = expr.replace(/,/g, "");
+        if (!/^[0-9+\-*/().\s]+$/.test(expr)) return NaN;
+        try {
+            return Function('"use strict"; return (' + expr + ')')();
+        } catch {
+            return NaN;
+        }
+    }
+
+    function calculateTotal() {
+        let total = 0;
+        const lines = amountTextarea.value.split("\n");
+        lines.forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed !== "") {
+                const result = evaluateExpression(trimmed);
+                if (!isNaN(result)) total += result;
+            }
+        });
+        totalField.value = formatNumber(total);
+    }
+
+    if (amountTextarea) {
+        amountTextarea.addEventListener("blur", function () {
+            const lines = this.value.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                const trimmed = lines[i].trim();
+                if (trimmed !== "") {
+                    const result = evaluateExpression(trimmed);
+                    if (!isNaN(result)) lines[i] = formatNumber(result);
+                    else lines[i] = "";
+                }
+            }
+            this.value = lines.join("\n");
+            calculateTotal();
+        });
+    }
+});
+</script>
+</body>
+</html>
